@@ -76,6 +76,7 @@ The realm export is `keycloak/realm-export/CIT-Nexus-realm.json`.
 | API audience | `cit-nexus-api`, added by the `cit-nexus-api` default client scope |
 | Role claim | Keycloak's built-in signed `realm_access.roles` claim |
 | Department claim | Signed access-token array `cit_department_groups`, mapped from full Keycloak group paths such as `/departments/CSE` |
+| Public registration account type | Required Keycloak user-profile attribute `account_type` with `student` and `admin_request` choices |
 
 The application roles are `ADMIN`, `FACULTY`, and `STUDENT`, matching FastAPI's
 authorization allowlist. The realm export provides managed groups for those
@@ -83,6 +84,16 @@ roles and assigns no users. Legacy `department_coordinator` and
 `club_representative` groups do not grant access to protected APIs. Role
 assignment and department group membership must be controlled by Keycloak
 administrators; users must not be allowed to edit their own group memberships.
+
+Self-registration asks users to select Student or “Admin (request access).”
+This is a profile attribute, not a role assignment. In particular, selecting
+the admin request option never grants the `ADMIN` realm role; a Keycloak
+administrator must verify the request and explicitly assign the managed admin
+group. Student access likewise depends on the appropriate administrator-
+controlled role assignment. When applying this to an already-imported realm,
+update its User Profile configuration and enable self-registration in the
+Keycloak Admin Console; startup realm import does not overwrite existing realm
+configuration.
 
 The selected future cancellation-reviewer policy is Admin plus a
 same-department Coordinator for departmental lab cancellation requests. This
@@ -147,11 +158,19 @@ Do not copy the Keycloak bootstrap credentials into either application process.
 
 ## React login behavior
 
-`keycloak-js` initializes with `check-sso` and PKCE `S256`. When the required
+`keycloak-js` initializes with `login-required` and PKCE `S256`. When the required
 public configuration is absent, the sign-in button stays disabled. On login,
 the React app sends the access token as a Bearer token to `/api/auth/me` and
 shows the identity only after FastAPI validates it. The ID token is not sent to
-the API. The frontend no longer has a role selector.
+the API, and users cannot select a role.
+
+FastAPI validates the access token and returns the application roles from the
+signed `realm_access.roles` claim. The React app routes `ADMIN` to `/admin`,
+`FACULTY` to `/faculty`, and `STUDENT` to `/student`, with Admin taking
+precedence when multiple application roles are assigned. Accounts without a
+recognized role see Access Denied. Protected API endpoints independently
+verify the token and enforce role requirements; frontend routing is not
+authorization.
 
 The JavaScript adapter holds tokens in memory; do not copy them into
 `localStorage`, `sessionStorage`, URLs, logs, or analytics. Refresh the access

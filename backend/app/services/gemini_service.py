@@ -176,7 +176,7 @@ def _generate_for_model(client, model, contents, config):
             raise GeminiRequestError(
                 "Gemini rejected the assistant request as invalid."
             ) from error
-        if status_code == 503:
+        if status_code in (500, 502, 503, 504):
             raise GeminiTemporaryUnavailableError(
                 "Gemini is temporarily unavailable."
             ) from error
@@ -186,7 +186,9 @@ def _generate_for_model(client, model, contents, config):
     except httpx.TimeoutException as error:
         raise GeminiTimeoutError("Gemini request timed out.") from error
     except httpx.NetworkError as error:
-        raise GeminiUnavailableError("Gemini could not be reached.") from error
+        raise GeminiTemporaryUnavailableError(
+            "Gemini could not be reached."
+        ) from error
 
     return response
 
@@ -210,7 +212,7 @@ def generate_content_with_fallback(client, contents, config):
         try:
             response = _generate_for_model(client, model, contents, config)
             return response, model
-        except GeminiTemporaryUnavailableError as error:
+        except (GeminiTemporaryUnavailableError, GeminiTimeoutError) as error:
             last_primary_error = error
             if retry_index == MAX_GEMINI_RETRIES:
                 break
@@ -233,6 +235,10 @@ def generate_content_with_fallback(client, contents, config):
     if not last_primary_error:
         raise GeminiUnavailableError("Gemini could not provide a response.")
     if not fallback_model or fallback_model == model:
+        if isinstance(last_primary_error, GeminiTimeoutError):
+            raise GeminiTimeoutError(
+                "Gemini request timed out after retries."
+            ) from last_primary_error
         raise GeminiUnavailableError(
             "Gemini primary model remained unavailable."
         ) from last_primary_error
@@ -243,7 +249,7 @@ def generate_content_with_fallback(client, contents, config):
     )
     try:
         response = _generate_for_model(client, fallback_model, contents, config)
-    except GeminiTemporaryUnavailableError as error:
+    except (GeminiTemporaryUnavailableError, GeminiTimeoutError) as error:
         raise GeminiUnavailableError(
             "Gemini primary and fallback models are temporarily unavailable."
         ) from error

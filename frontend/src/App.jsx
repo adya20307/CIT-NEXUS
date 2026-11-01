@@ -12,6 +12,7 @@ import "./design-system.css";
 import { filterExams } from "./examFilters.js";
 import { useKeycloakAuth } from "./auth/KeycloakAuthContext.js";
 import { apiFetch } from "./auth/keycloakClient.js";
+import { getDashboardPath, getDashboardRole } from "./auth/roles.js";
 import TimetablePage from "./TimetablePage.jsx";
 import AnalyticsPage from "./AnalyticsPage.jsx";
 import VenueBookingPage from "./VenueBookingPage.jsx";
@@ -2328,6 +2329,7 @@ style={{
             error={officialSchedule.error || datasetError}
             backend={backend}
             username={auth.identity?.identity?.username}
+            userRole={getDashboardRole(authRoles)}
             canAccessAnalytics={authRoles.includes("ADMIN")}
             onNavigate={setActive}
           />
@@ -2344,27 +2346,32 @@ style={{
 
 function App() {
   const auth = useKeycloakAuth();
-  const isAdminRoute = window.location.pathname.replace(/\/+$/, "") === "/admin";
-  const isAdmin = auth.identity?.roles?.includes("ADMIN") === true;
+  const dashboardPath = getDashboardPath(auth.identity?.roles);
+  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
 
   useEffect(() => {
-    if (isAdminRoute && !isAdmin) {
-      window.location.replace("/");
+    if (
+      auth.status === "authenticated" &&
+      dashboardPath &&
+      currentPath !== dashboardPath
+    ) {
+      window.location.replace(dashboardPath);
     }
-  }, [isAdminRoute, isAdmin]);
+  }, [auth.status, currentPath, dashboardPath]);
 
-  if (isAdminRoute) {
-    if (isAdmin) return <AdminDashboard auth={auth} />;
+  if (auth.status !== "authenticated" || !dashboardPath) return null;
+  if (currentPath !== dashboardPath) {
     return (
-      <main className="auth-loading" role="alert">
-        <h1>Administrator access required</h1>
-        <p>This workspace is restricted to accounts with a verified ADMIN role.</p>
-        <a href="/">Return to CIT Nexus</a>
-        <button type="button" onClick={auth.logout}>Sign out</button>
+      <main className="auth-loading" aria-live="polite">
+        <h1>Opening your CIT Nexus dashboard</h1>
+        <p>Redirecting based on your verified application role…</p>
       </main>
     );
   }
-  return <MainApplication />;
+
+  return dashboardPath === "/admin"
+    ? <AdminDashboard auth={auth} />
+    : <MainApplication />;
 }
 
 export default App;

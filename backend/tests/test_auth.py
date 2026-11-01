@@ -84,6 +84,9 @@ class AuthenticationTests(unittest.TestCase):
             },
             "cit_department_groups": ["/departments/CSE"],
         }
+        if "realm_access" in overrides and overrides["realm_access"] is None:
+            claims.pop("realm_access")
+            overrides.pop("realm_access")
         claims.update(overrides)
         return jwt.encode(
             claims,
@@ -155,6 +158,73 @@ class AuthenticationTests(unittest.TestCase):
                         headers={"Authorization": f"Bearer {token}"},
                     )
                     self.assertEqual(response.status_code, 401)
+
+    def test_missing_and_unrecognized_application_roles_are_empty(self):
+        environment = {
+            "KEYCLOAK_ISSUER_URL": ISSUER,
+            "KEYCLOAK_API_AUDIENCE": AUDIENCE,
+            "KEYCLOAK_FRONTEND_CLIENT_ID": CLIENT_ID,
+            "KEYCLOAK_ALLOWED_ALGORITHMS": "RS256",
+        }
+        client = TestClient(app)
+        app.dependency_overrides.clear()
+        self.addCleanup(app.dependency_overrides.clear)
+
+        with patch.dict(os.environ, environment):
+            for role_claim in (
+                None,
+                {"roles": ["department_coordinator"]},
+            ):
+                with self.subTest(role_claim=role_claim):
+                    response = client.get(
+                        "/api/auth/me",
+                        headers={
+                            "Authorization": "Bearer " + self.make_token(
+                                realm_access=role_claim
+                            ),
+                        },
+                    )
+                    self.assertEqual(response.status_code, 200, response.text)
+                    self.assertEqual(response.json()["roles"], [])
+
+    def test_protected_api_rejects_invalid_and_unrecognized_role_tokens(self):
+        environment = {
+            "KEYCLOAK_ISSUER_URL": ISSUER,
+            "KEYCLOAK_API_AUDIENCE": AUDIENCE,
+            "KEYCLOAK_FRONTEND_CLIENT_ID": CLIENT_ID,
+            "KEYCLOAK_ALLOWED_ALGORITHMS": "RS256",
+        }
+        client = TestClient(app)
+        app.dependency_overrides.clear()
+        self.addCleanup(app.dependency_overrides.clear)
+
+        with patch.dict(os.environ, environment):
+            for token, expected_status in (
+                ("not-a-jwt", 401),
+                (
+                    self.make_token(
+                        realm_access={"roles": ["department_coordinator"]}
+                    ),
+                    403,
+                ),
+                (self.make_token(realm_access={"roles": []}), 403),
+            ):
+                with self.subTest(expected_status=expected_status):
+                    response = client.get(
+                        "/api/analytics/room-utilization",
+                        headers={"Authorization": "Bearer " + token},
+                    )
+                    self.assertEqual(response.status_code, expected_status)
+
+            admin_response = client.get(
+                "/api/analytics/room-utilization",
+                headers={
+                    "Authorization": "Bearer " + self.make_token(
+                        realm_access={"roles": ["ADMIN"]}
+                    ),
+                },
+            )
+            self.assertEqual(admin_response.status_code, 200)
 
     def test_rejects_missing_bearer_token(self):
         with self.assertRaises(HTTPException) as raised:

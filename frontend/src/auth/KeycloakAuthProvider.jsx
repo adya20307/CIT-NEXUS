@@ -12,6 +12,7 @@ import {
   isKeycloakConfigured,
   verifyWithApi,
 } from "./keycloakClient.js";
+import { getDashboardPath } from "./roles.js";
 
 export function KeycloakAuthProvider({ children }) {
   const [status, setStatus] = useState(
@@ -39,7 +40,9 @@ export function KeycloakAuthProvider({ children }) {
         const result = await verifyWithApi(token);
         if (active) {
           setIdentity(result);
-          setStatus("authenticated");
+          setStatus(
+            getDashboardPath(result.roles) ? "authenticated" : "access-denied",
+          );
           setError("");
         }
       } catch {
@@ -101,18 +104,24 @@ export function KeycloakAuthProvider({ children }) {
       {status === "authenticated" ? children : (
         <main className="auth-loading" aria-live="polite">
           <h1>
-            {status === "error"
-              ? "CIT Nexus sign-in unavailable"
-              : status === "unconfigured"
-                ? "Keycloak is not configured"
-                : "Signing in to CIT Nexus"}
+            {status === "access-denied"
+              ? "Access Denied"
+              : status === "error"
+                ? "CIT Nexus sign-in unavailable"
+                : status === "unconfigured"
+                  ? "Keycloak is not configured"
+                  : "Signing in to CIT Nexus"}
           </h1>
           <p>
-            {error || (status === "unconfigured"
-              ? "Set the VITE_KEYCLOAK_URL, VITE_KEYCLOAK_REALM, and VITE_KEYCLOAK_CLIENT_ID environment variables."
-              : "Verifying your Keycloak session and access token…")}
+            {status === "access-denied"
+              ? "Your account does not have a recognized CIT Nexus application role. Contact a Keycloak administrator."
+              : error || (status === "unconfigured"
+                ? "Set the VITE_KEYCLOAK_URL, VITE_KEYCLOAK_REALM, and VITE_KEYCLOAK_CLIENT_ID environment variables."
+                : "Verifying your Keycloak session and access token…")}
           </p>
-          {(status === "error" || status === "unconfigured") && (
+          {status === "access-denied" ? (
+            <button type="button" onClick={logout}>Sign out</button>
+          ) : (status === "error" || status === "unconfigured") && (
             <button type="button" onClick={login} disabled={!isKeycloakConfigured}>
               Try sign-in again
             </button>

@@ -707,6 +707,65 @@ class GeminiServiceTests(unittest.TestCase):
         ])
         mock_client.close.assert_called_once()
 
+    def test_transient_gateway_and_network_errors_use_fallback(self):
+        errors_by_attempt = (
+            errors.APIError(
+                502,
+                {"error": {"status": "BAD_GATEWAY"}},
+            ),
+            httpx.ConnectError("synthetic network failure"),
+            errors.APIError(
+                504,
+                {"error": {"status": "GATEWAY_TIMEOUT"}},
+            ),
+            errors.APIError(
+                500,
+                {"error": {"status": "INTERNAL"}},
+            ),
+        )
+        mock_client = unittest.mock.MagicMock()
+        mock_client.models.generate_content.side_effect = [
+            *errors_by_attempt,
+            unittest.mock.MagicMock(text="Recovered with fallback."),
+        ]
+        with (
+            patch.dict(
+                os.environ,
+                {
+                    "GEMINI_API_KEY": "test-key",
+                    "GEMINI_MODEL": "primary-model",
+                    "GEMINI_FALLBACK_MODEL": "fallback-model",
+                },
+            ),
+            patch(
+                "app.services.gemini_service.genai.Client",
+                return_value=mock_client,
+            ),
+            patch(
+                "app.services.gemini_service.random.uniform",
+                side_effect=lambda lower, upper: upper,
+            ),
+            patch("app.services.gemini_service.time.sleep") as sleep,
+        ):
+            response = gemini_service.generate_assistant_reply(
+                "A question",
+                [],
+                "{}",
+                "english",
+            )
+
+        self.assertEqual(response.answer, "Recovered with fallback.")
+        self.assertEqual(response.model, "fallback-model")
+        self.assertEqual(
+            [
+                call.kwargs["model"]
+                for call in mock_client.models.generate_content.call_args_list
+            ],
+            ["primary-model"] * 4 + ["fallback-model"],
+        )
+        self.assertEqual(sleep.call_count, 3)
+        mock_client.close.assert_called_once()
+
     def test_authentication_and_invalid_request_errors_are_not_retried(self):
         cases = (
             (

@@ -251,6 +251,8 @@ def _principal_from_claims(
         raise InvalidTokenError("The token subject is invalid.")
 
     raw_roles = _claim_value(claims, settings.role_claim)
+    if raw_roles is None:
+        raw_roles = []
     if not isinstance(raw_roles, list) or any(
         not isinstance(role, str) for role in raw_roles
     ):

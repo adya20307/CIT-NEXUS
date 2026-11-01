@@ -67,27 +67,7 @@ body {
 }
 
 #kc-header {
-  position: absolute;
-  z-index: 4;
-  top: clamp(14px, 2.5vh, 28px);
-  left: clamp(16px, 2.8vw, 40px);
-  width: auto;
-  padding: 0;
-  text-align: left;
-}
-
-#kc-header-wrapper {
-  display: block;
-  width: 178px;
-  height: 90px;
-  overflow: hidden;
-  color: transparent;
-  font-size: 0;
-  background: url("../img/cit-nexus-logo.png") center / contain no-repeat;
-}
-
-#kc-header-wrapper::after {
-  content: none;
+  display: none;
 }
 
 .pf-v5-c-login__main {
@@ -122,6 +102,16 @@ body {
 .pf-v5-c-login__main-header {
   margin-bottom: 20px;
   text-align: left;
+}
+
+.pf-v5-c-login__main-header::before {
+  display: block;
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  background: url("../img/cit-nexus-logo.png") center / contain no-repeat;
+  content: "";
 }
 
 #kc-page-title {
@@ -214,11 +204,6 @@ body {
     width: min(410px, calc(100vw - 36px));
     padding: 27px;
   }
-
-  #kc-header-wrapper {
-    width: 138px;
-    height: 70px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -228,16 +213,6 @@ body {
 
   .pf-v5-c-login__container::before {
     content: none;
-  }
-
-  #kc-header {
-    top: 12px;
-    left: 14px;
-  }
-
-  #kc-header-wrapper {
-    width: 110px;
-    height: 56px;
   }
 
   .pf-v5-c-login__main {

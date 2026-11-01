@@ -3,6 +3,24 @@
 **Audit date:** 2026-11-01
 **Overall result:** Starter Pack scheduling and exports remain implemented and validator-confirmed. The five requested persistent-workflow features now have implementation work in place, but database-backed and authenticated end-to-end behavior is **not verified** because PostgreSQL is not configured in this environment. Do not treat these features as fully accepted.
 
+## 0. Role-based authentication update
+
+The existing CIT Nexus realm defines `ADMIN`, `FACULTY`, and `STUDENT` as
+**realm roles** in the signed `realm_access.roles` claim; the frontend client
+has no application client roles. The application now redirects verified
+accounts to `/admin`, `/faculty`, or `/student`, respectively. Multiple-role
+accounts use Admin, then Faculty, then Student precedence. Accounts without a
+recognized role receive Access Denied. The existing Keycloak login theme and
+single sign-in flow are unchanged. FastAPI continues to validate the access
+token and enforce role dependencies independently of frontend routing.
+
+Automated role routing, token validation, and unauthorized API tests are
+covered by the frontend and backend suites. **Manual login and redirect tests
+with actual STUDENT, FACULTY, and ADMIN accounts were not run**: no test user
+credentials were provided, and the realm export intentionally provisions no
+users. Do not interpret automated token tests as real-account end-to-end
+verification.
+
 ## 1. Initial repository audit
 
 Inspected the application entry points, authentication setup, API routers, dataset manager, schedulers, crisis rescheduler, Gemini services, frontend navigation and dashboards, test inventory, dependency manifests, Starter Pack files, and current exports.

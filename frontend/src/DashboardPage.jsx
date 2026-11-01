@@ -249,6 +249,7 @@ function DashboardPage({
   error,
   backend,
   username,
+  userRole,
   canAccessAnalytics,
   onNavigate,
 }) {
@@ -301,7 +302,7 @@ function DashboardPage({
     <section className="dashboard-page">
       <header className="dashboard-welcome">
         <div>
-          <span className="dashboard-overline">CAMPUS COMMAND CENTRE</span>
+          <span className="dashboard-overline">{userRole} DASHBOARD</span>
           <h1>{greeting}, {displayName}</h1>
           <p>
             {currentDate.toLocaleDateString(undefined, {

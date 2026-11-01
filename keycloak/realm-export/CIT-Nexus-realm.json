@@ -2,7 +2,52 @@
   "realm": "cit-nexus",
   "loginTheme": "cit-nexus",
   "enabled": true,
+  "registrationAllowed": true,
   "accessTokenLifespan": 300,
+  "userProfile": {
+    "attributes": [
+      {
+        "name": "account_type",
+        "displayName": "Account type",
+        "group": "cit-nexus-account",
+        "validations": {
+          "options": {
+            "options": [
+              "student",
+              "admin_request"
+            ]
+          }
+        },
+        "annotations": {
+          "inputType": "select",
+          "inputOptionsFromValidation": "options",
+          "inputOptionLabelsI18nPrefix": "accountTypeOptions"
+        },
+        "required": {
+          "roles": [
+            "user"
+          ]
+        },
+        "permissions": {
+          "view": [
+            "admin",
+            "user"
+          ],
+          "edit": [
+            "admin",
+            "user"
+          ]
+        }
+      }
+    ],
+    "groups": [
+      {
+        "name": "cit-nexus-account",
+        "displayHeader": "CIT Nexus account",
+        "displayDescription": "Choose the account type you are requesting."
+      }
+    ]
+  },
   "roles": {
     "realm": [
       {
