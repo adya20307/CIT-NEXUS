@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import unittest
@@ -12,8 +13,10 @@ from google.genai import errors
 
 from app.auth import AuthenticatedPrincipal, get_current_principal
 from app.api.assistant import AssistantChatRequest, chat_with_campus_assistant
+from app.api.timetable import build_timetable_data
 from app.main import app
 from app.services import campus_context, gemini_service
+from app.services.dataset_loader import load_dataset
 
 
 def mocked_gemini_response(answer, model="test-gemini-model"):
@@ -86,6 +89,22 @@ class AssistantRequestTests(unittest.TestCase):
 
 
 class AssistantContextTests(unittest.TestCase):
+    def setUp(self):
+        data = load_dataset()
+        schedule_path = campus_context.PROJECT_ROOT / "exports" / "schedule.json"
+        schedule = json.loads(schedule_path.read_text(encoding="utf-8"))
+        approved_timetable = {
+            "status": "success",
+            "data": build_timetable_data(data, schedule),
+        }
+        patcher = patch.object(
+            campus_context,
+            "get_timetable",
+            return_value=approved_timetable,
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_context_uses_existing_faculty_and_timetable_data(self):
         context = campus_context.build_campus_context(
             "When is Dr Shalini Gupta free?",

@@ -31,6 +31,7 @@ from app.services.gemini_service import (
     generate_assistant_reply,
 )
 from app.services.starter_pack_manager import (
+    VERSIONS_ROOT,
     get_active_version_id,
     get_working_snapshot,
 )
@@ -229,7 +230,7 @@ def _official_candidate(data, sessions, baseline):
     }
 
 
-def _validate_official_candidate(schedule):
+def _validate_official_candidate(schedule, data_path=ACTIVE_DATASET_PATH):
     from app.api.admin_dataset import _run_validator
 
     temp = tempfile.NamedTemporaryFile(
@@ -243,7 +244,7 @@ def _validate_official_candidate(schedule):
     try:
         with temp:
             json.dump(schedule, temp)
-        report = _run_validator(temp_path, ACTIVE_DATASET_PATH)
+        report = _run_validator(temp_path, data_path)
     except (OSError, RuntimeError, json.JSONDecodeError) as error:
         raise HTTPException(
             status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -257,6 +258,16 @@ def _validate_official_candidate(schedule):
             {"message": "Proposal failed official validation.", "report": report},
         )
     return report
+
+
+def _validate_initial_baseline(schedule, data_path):
+    try:
+        _validate_official_candidate(schedule, data_path=data_path)
+    except HTTPException as error:
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "The initial baseline timetable failed official validation.",
+        ) from error
 
 
 def _ensure_current(conn, actor, data=None, dataset_version_id=None):
@@ -280,6 +291,7 @@ def _ensure_current(conn, actor, data=None, dataset_version_id=None):
             status.HTTP_409_CONFLICT,
             "The published schedule and active dataset differ. Generate and validate the active dataset schedule first.",
         )
+    _validate_official_candidate(baseline)
     return create_baseline(
         conn,
         baseline,
@@ -432,7 +444,39 @@ def current_timetable(
     try:
         version = get_current_timetable()
         if version is None:
-            return {"version": None, "schedule": None}
+            raise HTTPException(
+                status.HTTP_503_SERVICE_UNAVAILABLE,
+                "No approved timetable is available. An administrator must publish a validated baseline or approve a timetable proposal.",
+            )
+        if version["decision"] == "baseline":
+            dataset_version_id = version.get("dataset_version_id")
+            version_path = (
+                VERSIONS_ROOT / f"{dataset_version_id}.json"
+                if dataset_version_id
+                else None
+            )
+            if not version_path or not version_path.is_file():
+                raise HTTPException(
+                    status.HTTP_503_SERVICE_UNAVAILABLE,
+                    "The dataset version associated with the initial baseline is unavailable.",
+                )
+            try:
+                with version_path.open("r", encoding="utf-8") as file:
+                    baseline_data = json.load(file)
+            except (OSError, json.JSONDecodeError) as error:
+                raise HTTPException(
+                    status.HTTP_503_SERVICE_UNAVAILABLE,
+                    "The dataset version associated with the initial baseline is invalid or unavailable.",
+                ) from error
+            if (
+                not isinstance(baseline_data, dict)
+                or baseline_data.get("dataset_id") != version["dataset_id"]
+            ):
+                raise HTTPException(
+                    status.HTTP_503_SERVICE_UNAVAILABLE,
+                    "Initial baseline timetable and dataset version do not match.",
+                )
+            _validate_initial_baseline(version["schedule"], version_path)
         return {
             "version": version["version_number"],
             "version_id": str(version["id"]),

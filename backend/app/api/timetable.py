@@ -1,6 +1,5 @@
 import json
 import math
-import os
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -8,14 +7,10 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.auth import AuthenticatedPrincipal, require_roles
 
-from app.rescheduler.crisis_engine import DISRUPTION_PATH, apply_disruption
 from app.services.dataset_loader import load_dataset
 from app.services.starter_pack_manager import (
-    DISRUPTION_STATE_PATH,
     SCHEDULE_STATE_PATH,
     VERSIONS_ROOT,
-    get_active_version_id,
-    get_disruption_state,
 )
 from app.services.workflow_store import WorkflowStoreUnavailable, get_current_timetable
 
@@ -25,7 +20,6 @@ router = APIRouter(tags=["Timetable and Analytics"])
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 EXPORT_DIR = PROJECT_ROOT / "exports"
 OFFICIAL_SCHEDULE_PATH = EXPORT_DIR / "schedule.json"
-CRISIS_SCHEDULE_PATH = EXPORT_DIR / "schedule_after.json"
 
 
 def _read_schedule(path):
@@ -42,42 +36,6 @@ def _read_schedule(path):
             status_code=503,
             detail=f"Official schedule is not valid JSON: {path.name}",
         ) from error
-
-
-def _read_crisis_schedule():
-    try:
-        with CRISIS_SCHEDULE_PATH.open("r", encoding="utf-8") as file:
-            return json.load(file), None
-    except FileNotFoundError:
-        return None, "No crisis timetable export is available."
-    except json.JSONDecodeError:
-        return None, "Crisis timetable export is not valid JSON."
-
-
-def _read_crisis_data(data):
-    try:
-        with DISRUPTION_PATH.open("r", encoding="utf-8") as file:
-            disruption = json.load(file)
-    except FileNotFoundError:
-        return None, "Crisis disruption definition is not available."
-    except json.JSONDecodeError:
-        return None, "Crisis disruption definition is not valid JSON."
-
-    if not isinstance(disruption, dict):
-        return None, "Crisis disruption definition must be a JSON object."
-    if disruption.get("dataset") != data["dataset_id"]:
-        return None, "Crisis disruption definition uses a different dataset."
-    try:
-        crisis_data = apply_disruption(data, disruption)
-    except (KeyError, ValueError) as error:
-        return None, f"Crisis disruption definition is invalid: {error}"
-    session_errors = _session_definition_errors(crisis_data)
-    if session_errors:
-        return None, (
-            "Crisis disruption contains incompatible session data: "
-            + " ".join(session_errors)
-        )
-    return crisis_data, None
 
 
 def _schedule_state():
@@ -97,37 +55,6 @@ def _published_schedule_data(working_data):
         return working_data
     with version_path.open("r", encoding="utf-8") as file:
         return json.load(file)
-
-
-def _session_definition_errors(data):
-    session_ids = [session.get("id") for session in data["sessions"]]
-    if any(not isinstance(session_id, str) for session_id in session_ids):
-        return ["Session definitions must have string IDs."]
-    if len(set(session_ids)) != len(session_ids):
-        return ["Session definitions contain duplicate IDs."]
-
-    course_ids = {course["id"] for course in data["courses"]}
-    faculty_ids = {member["id"] for member in data["faculty"]}
-    group_ids = {group["id"] for group in data["student_groups"]}
-    errors = []
-    for session in data["sessions"]:
-        session_id = session["id"]
-        course_id = session.get("course_id")
-        faculty_id = session.get("faculty_id")
-        groups = session.get("groups")
-        if not isinstance(course_id, str) or course_id not in course_ids:
-            errors.append(f"{session_id} references an unknown course.")
-        if not isinstance(faculty_id, str) or faculty_id not in faculty_ids:
-            errors.append(f"{session_id} references unknown faculty.")
-        if (
-            not isinstance(groups, list)
-            or any(not isinstance(group_id, str) for group_id in groups)
-            or not set(groups).issubset(group_ids)
-        ):
-            errors.append(f"{session_id} references unknown student groups.")
-        if type(session.get("duration")) is not int or session["duration"] < 1:
-            errors.append(f"{session_id} has an invalid duration.")
-    return errors
 
 
 def _schedule_errors(schedule, data):
@@ -836,93 +763,63 @@ def get_timetable(
     ),
 ):
     del principal
-    if os.getenv("DATABASE_URL", "").strip():
-        try:
-            approved = get_current_timetable()
-        except WorkflowStoreUnavailable as error:
-            raise HTTPException(
-                status_code=503,
-                detail="Persistent approved timetable storage is unavailable.",
-            ) from error
-        if approved:
-            version_dataset = approved.get("dataset_version_id")
-            version_path = VERSIONS_ROOT / f"{version_dataset}.json" if version_dataset else None
-            if not version_path or not version_path.is_file():
-                raise HTTPException(
-                    status_code=503,
-                    detail="The dataset version associated with the approved timetable is unavailable.",
-                )
-            with version_path.open("r", encoding="utf-8") as file:
-                approved_data = json.load(file)
-            if approved_data.get("dataset_id") != approved["dataset_id"]:
-                raise HTTPException(
-                    status_code=503,
-                    detail="Approved timetable and dataset version do not match.",
-                )
-            return {
-                "status": "success",
-                "data": build_timetable_data(
-                    approved_data,
-                    approved["schedule"],
-                    None,
-                    "Crisis schedule comparisons are disabled for the database-published timetable.",
-                ),
-                "timetable_version": approved["version_number"],
-            }
-    working_data = load_dataset()
-    current_version_id = get_active_version_id()
-    state = get_disruption_state()
-    preview_state = _schedule_state()
-    active_disruption = bool(
-        state
-        and current_version_id == state.get("applied_version_id")
-        and DISRUPTION_STATE_PATH.is_file()
-    )
+    try:
+        published = get_current_timetable()
+    except WorkflowStoreUnavailable as error:
+        raise HTTPException(
+            status_code=503,
+            detail="Persistent timetable publication storage is unavailable.",
+        ) from error
+    if published is None:
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                "No approved timetable is available. An administrator must "
+                "publish a validated baseline or approve a timetable proposal."
+            ),
+        )
+    if published.get("decision") not in {"baseline", "approved"}:
+        raise HTTPException(
+            status_code=503,
+            detail="The current timetable is not an approved publication.",
+        )
 
-    data = _published_schedule_data(working_data)
-    if active_disruption:
-        baseline_version_id = state.get("base_version_id")
-        if preview_state.get("schedule_version_id") != baseline_version_id:
-            raise HTTPException(
-                status_code=503,
-                detail="Disruption baseline does not match the published schedule.",
-            )
-        baseline_path = VERSIONS_ROOT / f"{baseline_version_id}.json"
-        if not baseline_path.is_file():
-            raise HTTPException(
-                status_code=503,
-                detail="Disruption baseline dataset version is unavailable.",
-            )
-        with baseline_path.open("r", encoding="utf-8") as file:
-            data = json.load(file)
-        crisis_schedule, crisis_schedule_error = _read_crisis_schedule()
-        if preview_state.get("schedule_after_version_id") != state.get("applied_version_id"):
-            crisis_schedule = None
-            crisis_schedule_error = "No validated repaired schedule is available for this disruption."
-        crisis_data = working_data if crisis_schedule is not None else None
-    elif state:
-        crisis_schedule = None
-        crisis_schedule_error = "The saved disruption does not match the active dataset version."
-        crisis_data = None
-    else:
-        crisis_schedule, crisis_schedule_error = _read_crisis_schedule()
-        crisis_data = None
-        if crisis_schedule is not None:
-            crisis_data, disruption_error = _read_crisis_data(data)
-            if disruption_error:
-                crisis_schedule = None
-                crisis_schedule_error = disruption_error
+    version_dataset = published.get("dataset_version_id")
+    version_path = VERSIONS_ROOT / f"{version_dataset}.json" if version_dataset else None
+    if not version_path or not version_path.is_file():
+        raise HTTPException(
+            status_code=503,
+            detail="The dataset version associated with the published timetable is unavailable.",
+        )
+    try:
+        with version_path.open("r", encoding="utf-8") as file:
+            published_data = json.load(file)
+    except (OSError, json.JSONDecodeError) as error:
+        raise HTTPException(
+            status_code=503,
+            detail="The dataset version associated with the published timetable is invalid or unavailable.",
+        ) from error
+    if (
+        not isinstance(published_data, dict)
+        or published_data.get("dataset_id") != published["dataset_id"]
+    ):
+        raise HTTPException(
+            status_code=503,
+            detail="Published timetable and dataset version do not match.",
+        )
+    if published["decision"] == "baseline":
+        from app.api.workflows import _validate_initial_baseline
 
-    official_schedule = _official_schedule(data)
+        _validate_initial_baseline(published["schedule"], version_path)
     return {
         "status": "success",
         "data": build_timetable_data(
-            data,
-            official_schedule,
-            crisis_schedule,
-            crisis_schedule_error,
-            crisis_data,
+            published_data,
+            published["schedule"],
+            None,
+            "Crisis schedule comparisons are disabled for the database-published timetable.",
         ),
+        "timetable_version": published["version_number"],
     }
 
 

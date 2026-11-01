@@ -7,7 +7,6 @@ from app.api.timetable import (
     build_room_utilization,
     build_timetable_data,
     get_room_utilization,
-    get_timetable,
 )
 from app.rescheduler.crisis_engine import DISRUPTION_PATH, apply_disruption
 from app.services.dataset_loader import load_dataset
@@ -229,13 +228,9 @@ class TimetableApiTests(unittest.TestCase):
             },
         )
 
-    def test_endpoint_functions_return_success_payloads(self):
-        timetable = get_timetable()
+    def test_room_utilization_endpoint_returns_success_payload(self):
         analytics = get_room_utilization()
-        self.assertEqual(timetable["status"], "success")
         self.assertEqual(analytics["status"], "success")
-        self.assertEqual(len(timetable["data"]["baseline_sessions"]), 189)
-        self.assertTrue(timetable["data"]["revised_schedule"]["available"])
         self.assertEqual(analytics["data"]["teaching"]["available_periods"], 1202)
 
 

@@ -49,11 +49,13 @@ application applies pending migrations lazily on the first workflow API call.
 - `GET /api/workflows/notifications` and
   `POST /api/workflows/notifications/{id}/read` — subject-scoped notifications.
 
-The common `GET /api/timetable` endpoint reads the PostgreSQL-approved
-timetable once a current workflow version has been established. Prior to the
-first workflow proposal, it continues using the existing validated export.
-After a faculty request or proposal is approved, all three timetable views
-consume the same approved dataset snapshot and schedule.
+The common `GET /api/timetable` endpoint reads only a PostgreSQL-published
+version designated as an officially validated baseline or an approved
+version. The matching `/api/workflows/timetable/current` endpoint follows the
+same publication rule. Until a valid version is established, both endpoints
+return HTTP 503; neither falls back to a timetable export. After a faculty
+request or proposal is approved, all three timetable views consume the same
+approved dataset snapshot and schedule.
 
 ## Identity and operational limitations
 

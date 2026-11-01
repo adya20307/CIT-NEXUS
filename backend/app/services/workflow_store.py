@@ -144,5 +144,16 @@ def get_current_timetable():
             SELECT v.* FROM timetable_current c
             JOIN timetable_versions v ON v.id = c.version_id
             WHERE c.singleton = TRUE
+              AND (
+                    (v.decision = 'baseline' AND v.source_proposal_id IS NULL)
+                    OR (
+                        v.decision = 'approved'
+                        AND EXISTS (
+                            SELECT 1 FROM timetable_proposals p
+                            WHERE p.id = v.source_proposal_id
+                              AND p.status = 'approved'
+                        )
+                    )
+              )
             """
         ).fetchone()
