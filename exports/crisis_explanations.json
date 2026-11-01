@@ -1,0 +1,1289 @@
+{
+  "schema_version": 1,
+  "solver": {
+    "status": "OPTIMAL",
+    "objective_value": 61.0,
+    "best_objective_bound": 61.0,
+    "causality_note": "These explanations report recorded hard-filter evidence, selected objective values, and feasible counterfactual checks. They are not proof that any one factor caused the solver's decision."
+  },
+  "shared_objective_totals": {
+    "S2": 40,
+    "S3": 15,
+    "S4": 6
+  },
+  "shared_objective_effects": [
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "Y1-B",
+      "day": "MON",
+      "session_ids": [
+        "HS101-B-L2",
+        "ID101-ALL-L1",
+        "MA101-AB-L3",
+        "PH101-B-L3"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "Y1-D",
+      "day": "FRI",
+      "session_ids": [
+        "CS101-D-L1",
+        "MA101-CD-L1",
+        "PH101-D-L2"
+      ],
+      "penalty_points": 4
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "Y1-D",
+      "day": "WED",
+      "session_ids": [
+        "HS101-D-L1",
+        "MA101-CD-L2"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "Y1-A",
+      "day": "FRI",
+      "session_ids": [
+        "CS101-A-L1",
+        "MA101-A-T1",
+        "PH191-A-P1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "Y1-D",
+      "day": "THU",
+      "session_ids": [
+        "CS101-D-L2",
+        "CS191-D-P1",
+        "HS101-D-L2",
+        "MA101-D-T1",
+        "PH101-D-L3"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CSE-2",
+      "day": "FRI",
+      "session_ids": [
+        "CS201-L2",
+        "CS202-L2",
+        "CS203-L2",
+        "CS292-P1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ECE-2",
+      "day": "THU",
+      "session_ids": [
+        "EC201-L1",
+        "EC291-P1",
+        "EC292-P1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "EE-2",
+      "day": "TUE",
+      "session_ids": [
+        "EE203-L1",
+        "EE204-L3",
+        "HS201-H2-L1"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ME-2",
+      "day": "WED",
+      "session_ids": [
+        "ME202-L1",
+        "ME203-L1",
+        "ME204-L1",
+        "ME292-P1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CE-2",
+      "day": "MON",
+      "session_ids": [
+        "CE201-L1",
+        "CE203-L1",
+        "CE292-P1"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CE-2",
+      "day": "WED",
+      "session_ids": [
+        "CE201-L3",
+        "CE202-L3",
+        "CE203-L3",
+        "CE204-L1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CSE-3",
+      "day": "WED",
+      "session_ids": [
+        "CS301-L2",
+        "CS302-L3",
+        "CS303-L3"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CSE-3",
+      "day": "FRI",
+      "session_ids": [
+        "CS301-L3",
+        "CS302-L2",
+        "CS303-L2",
+        "CS391-P1"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ECE-3",
+      "day": "TUE",
+      "session_ids": [
+        "EC301-L1",
+        "EC302-L1",
+        "EC303-L3",
+        "OE301-L1",
+        "OE302-L1",
+        "OE303-L1"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ECE-3",
+      "day": "MON",
+      "session_ids": [
+        "EC301-L3",
+        "EC302-L3",
+        "EC303-L2",
+        "OE301-L2",
+        "OE302-L2",
+        "OE303-L2"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "EE-3",
+      "day": "FRI",
+      "session_ids": [
+        "EE301-L2",
+        "EE302-L2",
+        "EE303-L2"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "EE-3",
+      "day": "THU",
+      "session_ids": [
+        "EE301-L3",
+        "EE302-L3",
+        "EE303-L3",
+        "OE301-L3",
+        "OE302-L3",
+        "OE303-L3"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "EE-3",
+      "day": "TUE",
+      "session_ids": [
+        "EE391-P1",
+        "OE301-L1",
+        "OE302-L1",
+        "OE303-L1"
+      ],
+      "penalty_points": 2
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ME-3",
+      "day": "TUE",
+      "session_ids": [
+        "ME301-L1",
+        "ME302-L1",
+        "ME303-L1",
+        "OE301-L1",
+        "OE302-L1",
+        "OE303-L1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "ME-3",
+      "day": "MON",
+      "session_ids": [
+        "ME302-L3",
+        "ME303-L2",
+        "ME391-P1",
+        "OE301-L2",
+        "OE302-L2",
+        "OE303-L2"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CE-3",
+      "day": "FRI",
+      "session_ids": [
+        "CE301-L1",
+        "CE302-L3",
+        "CE303-L2",
+        "CE391-P1"
+      ],
+      "penalty_points": 1
+    },
+    {
+      "objective": "S2",
+      "scope": "group_day",
+      "group_id": "CE-3",
+      "day": "THU",
+      "session_ids": [
+        "CE301-L2",
+        "CE303-L1",
+        "OE301-L3",
+        "OE302-L3",
+        "OE303-L3"
+      ],
+      "penalty_points": 4
+    },
+    {
+      "objective": "S3",
+      "scope": "group_day",
+      "group_id": "Y1-C",
+      "day": "WED",
+      "session_ids": [
+        "CS191-C-P1",
+        "MA101-CD-L2",
+        "PH101-C-L3",
+        "PH191-C-P1"
+      ],
+      "penalty_points": 6
+    },
+    {
+      "objective": "S3",
+      "scope": "group_day",
+      "group_id": "Y1-B",
+      "day": "FRI",
+      "session_ids": [
+        "CS101-B-L2",
+        "CS191-B-P1",
+        "WS101-B-P1"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S3",
+      "scope": "group_day",
+      "group_id": "Y1-D",
+      "day": "THU",
+      "session_ids": [
+        "CS101-D-L2",
+        "CS191-D-P1",
+        "HS101-D-L2",
+        "MA101-D-T1",
+        "PH101-D-L3"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S3",
+      "scope": "group_day",
+      "group_id": "ECE-2",
+      "day": "THU",
+      "session_ids": [
+        "EC201-L1",
+        "EC291-P1",
+        "EC292-P1"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S4",
+      "scope": "group_course_day",
+      "group_id": "Y1-A",
+      "course_id": "HS101",
+      "day": "TUE",
+      "session_ids": [
+        "HS101-A-L1",
+        "HS101-A-L2"
+      ],
+      "penalty_points": 3
+    },
+    {
+      "objective": "S4",
+      "scope": "group_course_day",
+      "group_id": "CSE-2",
+      "course_id": "CS204",
+      "day": "THU",
+      "session_ids": [
+        "CS204-L1",
+        "CS204-L2"
+      ],
+      "penalty_points": 3
+    }
+  ],
+  "moved_sessions": [
+    {
+      "session_id": "CE301-L3",
+      "course": {
+        "id": "CE301",
+        "name": "Structural Analysis"
+      },
+      "original": {
+        "session_id": "CE301-L3",
+        "day": "WED",
+        "start_period": 1,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "CE301-L3",
+        "day": "WED",
+        "start_period": 1,
+        "room_id": "CR-205"
+      },
+      "change_type": "ROOM_ONLY",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on WED during periods [1].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "CE301-L3",
+          "detail": "Room CR-102 is unavailable on WED during periods [1].",
+          "room_id": "CR-102",
+          "day": "WED",
+          "periods": [
+            1
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F31",
+        "name": "Dr. Anjali Verma"
+      },
+      "groups": [
+        {
+          "id": "CE-3",
+          "name": "CE Year 3",
+          "size": 45
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-205",
+          "name": "Classroom B-205",
+          "type": "classroom",
+          "capacity": 60
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "CE-3"
+        ],
+        "session_size": 45
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "CS203-L1",
+      "course": {
+        "id": "CS203",
+        "name": "Digital Logic Design"
+      },
+      "original": {
+        "session_id": "CS203-L1",
+        "day": "MON",
+        "start_period": 6,
+        "room_id": "LH-4"
+      },
+      "revised": {
+        "session_id": "CS203-L1",
+        "day": "WED",
+        "start_period": 6,
+        "room_id": "LH-3"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): F07 is unavailable on MON during periods [6].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "faculty_unavailability",
+          "session_id": "CS203-L1",
+          "detail": "F07 is unavailable on MON during periods [6].",
+          "faculty_id": "F07",
+          "day": "MON",
+          "periods": [
+            6
+          ],
+          "reason": "Conference travel every Monday for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F07",
+        "name": "Dr. Pooja Das"
+      },
+      "groups": [
+        {
+          "id": "CSE-2",
+          "name": "CSE Year 2",
+          "size": 80
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "LH-4",
+          "name": "Lecture Hall 4",
+          "type": "lecture_hall",
+          "capacity": 120
+        },
+        "revised": {
+          "id": "LH-3",
+          "name": "Lecture Hall 3",
+          "type": "lecture_hall",
+          "capacity": 120
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "CSE-2"
+        ],
+        "session_size": 80
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "CS204-L2",
+      "course": {
+        "id": "CS204",
+        "name": "Object-Oriented Programming"
+      },
+      "original": {
+        "session_id": "CS204-L2",
+        "day": "THU",
+        "start_period": 1,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "CS204-L2",
+        "day": "THU",
+        "start_period": 7,
+        "room_id": "LH-2"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on THU during periods [1].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "CS204-L2",
+          "detail": "Room CR-102 is unavailable on THU during periods [1].",
+          "room_id": "CR-102",
+          "day": "THU",
+          "periods": [
+            1
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [
+        {
+          "objective": "S4",
+          "scope": "group_course_day",
+          "group_id": "CSE-2",
+          "course_id": "CS204",
+          "day": "THU",
+          "session_ids": [
+            "CS204-L1",
+            "CS204-L2"
+          ],
+          "penalty_points": 3
+        }
+      ],
+      "faculty": {
+        "id": "F08",
+        "name": "Prof. Vikram Rao (Visiting)"
+      },
+      "groups": [
+        {
+          "id": "CSE-2",
+          "name": "CSE Year 2",
+          "size": 80
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "LH-2",
+          "name": "Lecture Hall 2",
+          "type": "lecture_hall",
+          "capacity": 200
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "CSE-2"
+        ],
+        "session_size": 80
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "CS302-L1",
+      "course": {
+        "id": "CS302",
+        "name": "Database Systems"
+      },
+      "original": {
+        "session_id": "CS302-L1",
+        "day": "TUE",
+        "start_period": 6,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "CS302-L1",
+        "day": "MON",
+        "start_period": 6,
+        "room_id": "CR-101"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on TUE during periods [6].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "CS302-L1",
+          "detail": "Room CR-102 is unavailable on TUE during periods [6].",
+          "room_id": "CR-102",
+          "day": "TUE",
+          "periods": [
+            6
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F05",
+        "name": "Dr. Meera Nair"
+      },
+      "groups": [
+        {
+          "id": "CSE-3",
+          "name": "CSE Year 3",
+          "size": 75
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-101",
+          "name": "Classroom A-101",
+          "type": "classroom",
+          "capacity": 90
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "CSE-3"
+        ],
+        "session_size": 75
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "EC204-L2",
+      "course": {
+        "id": "EC204",
+        "name": "Probability and Random Processes"
+      },
+      "original": {
+        "session_id": "EC204-L2",
+        "day": "WED",
+        "start_period": 6,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "EC204-L2",
+        "day": "WED",
+        "start_period": 6,
+        "room_id": "CR-103"
+      },
+      "change_type": "ROOM_ONLY",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on WED during periods [6].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "EC204-L2",
+          "detail": "Room CR-102 is unavailable on WED during periods [6].",
+          "room_id": "CR-102",
+          "day": "WED",
+          "periods": [
+            6
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F12",
+        "name": "Dr. Amit Behera"
+      },
+      "groups": [
+        {
+          "id": "ECE-2",
+          "name": "ECE Year 2",
+          "size": 70
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-103",
+          "name": "Classroom A-103",
+          "type": "classroom",
+          "capacity": 80
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "ECE-2"
+        ],
+        "session_size": 70
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "ME201-L2",
+      "course": {
+        "id": "ME201",
+        "name": "Engineering Thermodynamics"
+      },
+      "original": {
+        "session_id": "ME201-L2",
+        "day": "WED",
+        "start_period": 4,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "ME201-L2",
+        "day": "THU",
+        "start_period": 7,
+        "room_id": "CR-104"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on WED during periods [4].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "ME201-L2",
+          "detail": "Room CR-102 is unavailable on WED during periods [4].",
+          "room_id": "CR-102",
+          "day": "WED",
+          "periods": [
+            4
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F25",
+        "name": "Dr. Tanvi Desai"
+      },
+      "groups": [
+        {
+          "id": "ME-2",
+          "name": "ME Year 2",
+          "size": 60
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-104",
+          "name": "Classroom A-104",
+          "type": "classroom",
+          "capacity": 80
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "ME-2"
+        ],
+        "session_size": 60
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "ME203-L3",
+      "course": {
+        "id": "ME203",
+        "name": "Kinematics of Machines"
+      },
+      "original": {
+        "session_id": "ME203-L3",
+        "day": "FRI",
+        "start_period": 2,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "ME203-L3",
+        "day": "THU",
+        "start_period": 6,
+        "room_id": "CR-104"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on FRI during periods [2].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "ME203-L3",
+          "detail": "Room CR-102 is unavailable on FRI during periods [2].",
+          "room_id": "CR-102",
+          "day": "FRI",
+          "periods": [
+            2
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F27",
+        "name": "Dr. Sunita Bose"
+      },
+      "groups": [
+        {
+          "id": "ME-2",
+          "name": "ME Year 2",
+          "size": 60
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-104",
+          "name": "Classroom A-104",
+          "type": "classroom",
+          "capacity": 80
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "ME-2"
+        ],
+        "session_size": 60
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "ME302-L3",
+      "course": {
+        "id": "ME302",
+        "name": "Machine Design"
+      },
+      "original": {
+        "session_id": "ME302-L3",
+        "day": "TUE",
+        "start_period": 4,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "ME302-L3",
+        "day": "MON",
+        "start_period": 6,
+        "room_id": "CR-105"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on TUE during periods [4].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "ME302-L3",
+          "detail": "Room CR-102 is unavailable on TUE during periods [4].",
+          "room_id": "CR-102",
+          "day": "TUE",
+          "periods": [
+            4
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [
+        {
+          "objective": "S2",
+          "scope": "group_day",
+          "group_id": "ME-3",
+          "day": "MON",
+          "session_ids": [
+            "ME302-L3",
+            "ME303-L2",
+            "ME391-P1",
+            "OE301-L2",
+            "OE302-L2",
+            "OE303-L2"
+          ],
+          "penalty_points": 1
+        }
+      ],
+      "faculty": {
+        "id": "F26",
+        "name": "Dr. Abhishek Rout"
+      },
+      "groups": [
+        {
+          "id": "ME-3",
+          "name": "ME Year 3",
+          "size": 55
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "CR-105",
+          "name": "Classroom A-105",
+          "type": "classroom",
+          "capacity": 70
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "ME-3"
+        ],
+        "session_size": 55
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "PH101-A-L3",
+      "course": {
+        "id": "PH101",
+        "name": "Engineering Physics"
+      },
+      "original": {
+        "session_id": "PH101-A-L3",
+        "day": "THU",
+        "start_period": 6,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "PH101-A-L3",
+        "day": "MON",
+        "start_period": 6,
+        "room_id": "LH-5"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on THU during periods [6].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "PH101-A-L3",
+          "detail": "Room CR-102 is unavailable on THU during periods [6].",
+          "room_id": "CR-102",
+          "day": "THU",
+          "periods": [
+            6
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F21",
+        "name": "Dr. Lakshmi Reddy"
+      },
+      "groups": [
+        {
+          "id": "Y1-A",
+          "name": "B.Tech Year 1, Section A",
+          "size": 90
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "LH-5",
+          "name": "Lecture Hall 5",
+          "type": "lecture_hall",
+          "capacity": 120
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "Y1-A"
+        ],
+        "session_size": 90
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "PH101-B-L3",
+      "course": {
+        "id": "PH101",
+        "name": "Engineering Physics"
+      },
+      "original": {
+        "session_id": "PH101-B-L3",
+        "day": "MON",
+        "start_period": 6,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "PH101-B-L3",
+        "day": "MON",
+        "start_period": 3,
+        "room_id": "LH-2"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on MON during periods [6].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "PH101-B-L3",
+          "detail": "Room CR-102 is unavailable on MON during periods [6].",
+          "room_id": "CR-102",
+          "day": "MON",
+          "periods": [
+            6
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [
+        {
+          "constraint": "faculty_non_overlap",
+          "other_session_id": "PH101-A-L3",
+          "detail": "Faculty F21 overlaps PH101-A-L3 in the revised schedule."
+        }
+      ],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [
+        {
+          "objective": "S2",
+          "scope": "group_day",
+          "group_id": "Y1-B",
+          "day": "MON",
+          "session_ids": [
+            "HS101-B-L2",
+            "ID101-ALL-L1",
+            "MA101-AB-L3",
+            "PH101-B-L3"
+          ],
+          "penalty_points": 1
+        }
+      ],
+      "faculty": {
+        "id": "F21",
+        "name": "Dr. Lakshmi Reddy"
+      },
+      "groups": [
+        {
+          "id": "Y1-B",
+          "name": "B.Tech Year 1, Section B",
+          "size": 90
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "LH-2",
+          "name": "Lecture Hall 2",
+          "type": "lecture_hall",
+          "capacity": 200
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "Y1-B"
+        ],
+        "session_size": 90
+      },
+      "duration_periods": 1
+    },
+    {
+      "session_id": "PH101-D-L1",
+      "course": {
+        "id": "PH101",
+        "name": "Engineering Physics"
+      },
+      "original": {
+        "session_id": "PH101-D-L1",
+        "day": "WED",
+        "start_period": 3,
+        "room_id": "CR-102"
+      },
+      "revised": {
+        "session_id": "PH101-D-L1",
+        "day": "MON",
+        "start_period": 4,
+        "room_id": "LH-6"
+      },
+      "change_type": "TIME_AND_ROOM",
+      "original_placement_excluded_by_hard_constraint": true,
+      "original_placement_feasible_with_revised_assignments": false,
+      "explanation_type": "HARD_CONSTRAINT",
+      "confidence": "HIGH",
+      "explanation": "The original placement was excluded by recorded hard constraint(s): Room CR-102 is unavailable on WED during periods [3].",
+      "hard_constraint_evidence": [
+        {
+          "constraint": "room_unavailability",
+          "session_id": "PH101-D-L1",
+          "detail": "Room CR-102 is unavailable on WED during periods [3].",
+          "room_id": "CR-102",
+          "day": "WED",
+          "periods": [
+            3
+          ],
+          "reason": "Water leak, room closed for the rest of the semester"
+        }
+      ],
+      "counterfactual_conflicts": [],
+      "objective_contributions": {
+        "stability_move_penalty": 0,
+        "S1": 0,
+        "S5": 0,
+        "S6": 0
+      },
+      "shared_objective_effects": [],
+      "faculty": {
+        "id": "F22",
+        "name": "Dr. Harish Dash"
+      },
+      "groups": [
+        {
+          "id": "Y1-D",
+          "name": "B.Tech Year 1, Section D",
+          "size": 90
+        }
+      ],
+      "rooms": {
+        "original": {
+          "id": "CR-102",
+          "name": "Classroom A-102",
+          "type": "classroom",
+          "capacity": 90
+        },
+        "revised": {
+          "id": "LH-6",
+          "name": "Lecture Hall 6",
+          "type": "lecture_hall",
+          "capacity": 120
+        }
+      },
+      "student_impact": {
+        "groups": [
+          "Y1-D"
+        ],
+        "session_size": 90
+      },
+      "duration_periods": 1
+    }
+  ]
+}

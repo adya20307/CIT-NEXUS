@@ -1,0 +1,42 @@
+
+services:
+  keycloak-db:
+    image: postgres:16
+    container_name: cit-nexus-keycloak-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${KEYCLOAK_DB_USER:?Set KEYCLOAK_DB_USER in a local environment file}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?Set KEYCLOAK_DB_PASSWORD in a local environment file}
+    volumes:
+      - keycloak_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: cit-nexus-keycloak
+    restart: unless-stopped
+    command: start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME:?Set KC_BOOTSTRAP_ADMIN_USERNAME in a local environment file}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD:?Set KC_BOOTSTRAP_ADMIN_PASSWORD in a local environment file}
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-db
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: ${KEYCLOAK_DB_USER:?Set KEYCLOAK_DB_USER in a local environment file}
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?Set KEYCLOAK_DB_PASSWORD in a local environment file}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./themes/cit-nexus:/opt/keycloak/themes/cit-nexus:ro
+      - ../frontend/public/images:/opt/keycloak/themes/cit-nexus/login/resources/img:ro
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+
+volumes:
+  keycloak_db_data:

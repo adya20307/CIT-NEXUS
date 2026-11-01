@@ -1,0 +1,219 @@
+[
+  {
+    "request_id": "BR-01",
+    "status": "alternative_offered",
+    "reason": "The requested windows were unavailable. An alternative time outside the requested windows is offered for consideration.",
+    "room_id": "AUD",
+    "day": "MON",
+    "start_period": 1,
+    "end_period": 2
+  },
+  {
+    "request_id": "BR-11a",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "THU",
+    "start_period": 6,
+    "end_period": 9
+  },
+  {
+    "request_id": "BR-11b",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "FRI",
+    "start_period": 6,
+    "end_period": 9
+  },
+  {
+    "request_id": "BR-20",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "AUD",
+    "day": "FRI",
+    "start_period": 4,
+    "end_period": 5
+  },
+  {
+    "request_id": "BR-16",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "FRI",
+    "start_period": 10,
+    "end_period": 13
+  },
+  {
+    "request_id": "BR-03",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "AUD",
+    "day": "WED",
+    "start_period": 6,
+    "end_period": 7
+  },
+  {
+    "request_id": "BR-19",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "CR-105",
+    "day": "MON",
+    "start_period": 9,
+    "end_period": 9
+  },
+  {
+    "request_id": "BR-08",
+    "status": "alternative_offered",
+    "reason": "The requested windows were unavailable. An alternative time outside the requested windows is offered for consideration.",
+    "room_id": "CR-105",
+    "day": "MON",
+    "start_period": 1,
+    "end_period": 1
+  },
+  {
+    "request_id": "BR-13",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "CR-103",
+    "day": "WED",
+    "start_period": 10,
+    "end_period": 11
+  },
+  {
+    "request_id": "BR-18",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "CIVIL-LAB",
+    "day": "TUE",
+    "start_period": 6,
+    "end_period": 8
+  },
+  {
+    "request_id": "BR-02",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "CS-LAB-1",
+    "day": "THU",
+    "start_period": 6,
+    "end_period": 11
+  },
+  {
+    "request_id": "BR-06",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "SH-1",
+    "day": "THU",
+    "start_period": 10,
+    "end_period": 11
+  },
+  {
+    "request_id": "BR-05a",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "MON",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-05b",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "TUE",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-05c",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "WED",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-05d",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "OAT",
+    "day": "THU",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-05e",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "SH-2",
+    "day": "FRI",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-04",
+    "status": "rejected",
+    "reason": "Request was officially cancelled."
+  },
+  {
+    "request_id": "BR-07",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "AUD",
+    "day": "THU",
+    "start_period": 10,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-09",
+    "status": "rejected",
+    "reason": "No venue satisfies the requested room type, capacity and feature requirements."
+  },
+  {
+    "request_id": "BR-10",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "SH-1",
+    "day": "FRI",
+    "start_period": 1,
+    "end_period": 9
+  },
+  {
+    "request_id": "BR-12",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "LH-1",
+    "day": "TUE",
+    "start_period": 9,
+    "end_period": 9
+  },
+  {
+    "request_id": "BR-14",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "SH-2",
+    "day": "WED",
+    "start_period": 11,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-15",
+    "status": "approved",
+    "reason": "Venue and time satisfy the request and all checked constraints.",
+    "room_id": "AUD",
+    "day": "FRI",
+    "start_period": 10,
+    "end_period": 12
+  },
+  {
+    "request_id": "BR-17",
+    "status": "alternative_offered",
+    "reason": "The requested windows were unavailable. An alternative time outside the requested windows is offered for consideration.",
+    "room_id": "OAT",
+    "day": "MON",
+    "start_period": 1,
+    "end_period": 2
+  }
+]

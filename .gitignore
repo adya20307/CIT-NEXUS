@@ -1,0 +1,17 @@
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.venv/
+**/node_modules/
+**/dist/
+keycloak/data/
+keycloak/secrets/
+backend/storage/spectra_events.sqlite3
+backend/storage/spectra_events.sqlite3-wal
+backend/storage/spectra_events.sqlite3-shm
+backend/storage/starter_pack_management/

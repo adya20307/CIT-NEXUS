@@ -1,0 +1,254 @@
+:root {
+  --cit-ink: #17213d;
+  --cit-muted: #63708d;
+  --cit-primary: #1468d4;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  background: #edf2ff;
+}
+
+body {
+  overflow: hidden;
+}
+
+.pf-v5-c-login {
+  position: relative;
+  height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #0a1831 url("../img/cit-campus-login.png") center / cover no-repeat;
+  color: var(--cit-ink);
+}
+
+.pf-v5-c-login::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(5, 17, 38, .36), rgba(7, 18, 42, .12) 48%, rgba(5, 17, 38, .42));
+  content: "";
+  pointer-events: none;
+}
+
+.pf-v5-c-login__container {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+.pf-v5-c-login__container::after {
+  content: none;
+}
+
+.pf-v5-c-login__container::before {
+  position: fixed;
+  z-index: 2;
+  left: clamp(24px, 4vw, 64px);
+  bottom: clamp(24px, 5vh, 52px);
+  width: min(38vw, 500px);
+  color: #fff;
+  content: "Think. Schedule. Adapt.\A One connected campus. A smarter day for everyone.";
+  white-space: pre-line;
+  font-size: clamp(16px, 1.65vw, 23px);
+  font-weight: 750;
+  letter-spacing: -.025em;
+  line-height: 1.5;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .72);
+  pointer-events: none;
+}
+
+#kc-header {
+  position: absolute;
+  z-index: 4;
+  top: clamp(14px, 2.5vh, 28px);
+  left: clamp(16px, 2.8vw, 40px);
+  width: auto;
+  padding: 0;
+  text-align: left;
+}
+
+#kc-header-wrapper {
+  display: block;
+  width: 178px;
+  height: 90px;
+  overflow: hidden;
+  color: transparent;
+  font-size: 0;
+  background: url("../img/cit-nexus-logo.png") center / contain no-repeat;
+}
+
+#kc-header-wrapper::after {
+  content: none;
+}
+
+.pf-v5-c-login__main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: min(420px, calc(100vw - 36px));
+  max-height: calc(100vh - 40px);
+  max-width: none;
+  overflow-y: auto;
+  padding: 34px 36px 30px;
+  border: 1px solid rgba(255, 255, 255, .82);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .95);
+  box-shadow:
+    0 32px 90px rgba(2, 12, 31, .35),
+    0 5px 18px rgba(2, 12, 31, .14),
+    inset 0 1px 0 rgba(255, 255, 255, .95);
+  backdrop-filter: blur(20px);
+  transform: translate(-50%, -50%);
+}
+
+.pf-v5-c-login__main-header,
+.pf-v5-c-login__main-body,
+.pf-v5-c-login__main-footer {
+  padding-right: 0;
+  padding-left: 0;
+  background: transparent;
+}
+
+.pf-v5-c-login__main-header {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#kc-page-title {
+  margin: 0;
+  color: var(--cit-ink);
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 760;
+  letter-spacing: -.04em;
+  line-height: 1.2;
+}
+
+.pf-v5-c-login__main-body {
+  color: var(--cit-muted);
+}
+
+.pf-v5-c-form__label-text {
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.pf-v5-c-form-control,
+.pf-v5-c-form-control input {
+  border-radius: 10px;
+}
+
+.pf-v5-c-form-control {
+  border: 1px solid #dfe5f1;
+  background: #fbfcff;
+  box-shadow: none;
+}
+
+.pf-v5-c-form-control:focus-within {
+  border-color: #7989f0;
+  box-shadow: 0 0 0 3px rgba(75, 94, 232, .13);
+}
+
+.pf-v5-c-form-control input {
+  min-height: 46px;
+  color: var(--cit-ink);
+  background: transparent;
+}
+
+.pf-v5-c-input-group {
+  gap: 7px;
+}
+
+.pf-v5-c-button.pf-m-primary {
+  min-height: 48px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #1478e7, #1555b8);
+  box-shadow: 0 9px 20px rgba(20, 104, 212, .24);
+  font-size: 14px;
+  font-weight: 750;
+  transition: box-shadow .18s ease, transform .18s ease, filter .18s ease;
+}
+
+.pf-v5-c-button.pf-m-primary:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 12px 25px rgba(20, 104, 212, .3);
+  transform: translateY(-1px);
+}
+
+.pf-v5-c-button.pf-m-control {
+  min-height: 46px;
+  border: 1px solid #dfe5f1;
+  border-radius: 10px;
+  color: #5d6882;
+  background: #f7f8fd;
+}
+
+#kc-info,
+.pf-v5-c-login__main-footer {
+  color: var(--cit-muted);
+}
+
+@media (max-width: 900px) {
+  .pf-v5-c-login::before {
+    background: linear-gradient(120deg, rgba(5, 17, 38, .42), rgba(7, 18, 42, .28) 48%, rgba(5, 17, 38, .48));
+  }
+
+  .pf-v5-c-login__container::before {
+    width: min(34vw, 360px);
+    font-size: clamp(15px, 2vw, 19px);
+  }
+
+  .pf-v5-c-login__main {
+    width: min(410px, calc(100vw - 36px));
+    padding: 27px;
+  }
+
+  #kc-header-wrapper {
+    width: 138px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pf-v5-c-login::before {
+    background: linear-gradient(180deg, rgba(5, 17, 38, .34), rgba(5, 17, 38, .2) 46%, rgba(5, 17, 38, .58));
+  }
+
+  .pf-v5-c-login__container::before {
+    content: none;
+  }
+
+  #kc-header {
+    top: 12px;
+    left: 14px;
+  }
+
+  #kc-header-wrapper {
+    width: 110px;
+    height: 56px;
+  }
+
+  .pf-v5-c-login__main {
+    top: 50%;
+    width: calc(100vw - 32px);
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
+    padding: 25px 22px 23px;
+  }
+
+  #kc-page-title {
+    font-size: 27px;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "dataset_id": "cit-public-v1",
+  "schedule_dataset_id": "cit-public-v1",
+  "team": "CIT Nexus",
+  "soft_penalties": {
+    "S1": 16,
+    "S2": 43,
+    "S3": 18,
+    "S4": 9,
+    "S5": 0,
+    "S6": 12
+  },
+  "soft_total": 98,
+  "bookings": {
+    "booking_score": 63.0,
+    "booking_score_max_if_all_approved": 70,
+    "approved": 20,
+    "alternatives": 3,
+    "rejected": 2,
+    "session_overrides": 0,
+    "priority_inversions": []
+  },
+  "exam_soft_penalty": 0,
+  "hard_violations": [],
+  "hard_violation_count": 0,
+  "hard_by_rule": {},
+  "warnings": []
+}

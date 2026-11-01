@@ -1,0 +1,15 @@
+id,name,year,department,size,needs_accessible
+Y1-A,"B.Tech Year 1, Section A",1,COMMON,90,False
+Y1-B,"B.Tech Year 1, Section B",1,COMMON,90,False
+Y1-C,"B.Tech Year 1, Section C",1,COMMON,90,False
+Y1-D,"B.Tech Year 1, Section D",1,COMMON,90,False
+CSE-2,CSE Year 2,2,CSE,80,False
+ECE-2,ECE Year 2,2,ECE,70,False
+EE-2,EE Year 2,2,EE,60,False
+ME-2,ME Year 2,2,ME,60,True
+CE-2,CE Year 2,2,CE,50,False
+CSE-3,CSE Year 3,3,CSE,75,False
+ECE-3,ECE Year 3,3,ECE,65,False
+EE-3,EE Year 3,3,EE,55,False
+ME-3,ME Year 3,3,ME,55,False
+CE-3,CE Year 3,3,CE,45,False

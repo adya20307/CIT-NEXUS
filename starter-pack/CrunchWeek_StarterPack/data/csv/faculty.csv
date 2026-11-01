@@ -1,0 +1,41 @@
+id,name,department,max_hours_per_day,needs_accessible,unavailable,preferences
+F01,Dr. Ananya Mishra,CSE,4,False,"[{""day"": ""WED"", ""periods"": [6, 7, 8, 9], ""reason"": ""HOD meeting""}]",[]
+F02,Dr. Rohit Sahoo,CSE,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON"", ""TUE"", ""WED"", ""THU"", ""FRI""], ""periods"": [1], ""note"": ""Prefers not to teach at 8 AM""}]"
+F03,Dr. Kavya Iyer,CSE,4,False,[],[]
+F04,Dr. Sandeep Patnaik,CSE,4,False,[],[]
+F05,Dr. Meera Nair,CSE,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON"", ""TUE"", ""WED"", ""THU"", ""FRI""], ""periods"": [1], ""note"": ""Prefers not to teach at 8 AM""}]"
+F06,Dr. Arjun Mehta,CSE,4,False,[],"[{""type"": ""avoid"", ""days"": [""FRI""], ""periods"": [6, 7, 8, 9], ""note"": ""Keeps Friday afternoons for research""}]"
+F07,Dr. Pooja Das,CSE,4,False,[],[]
+F08,Prof. Vikram Rao (Visiting),CSE,4,False,"[{""day"": ""MON"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Visiting faculty: on campus Tue and Thu only""}, {""day"": ""WED"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Visiting faculty: on campus Tue and Thu only""}, {""day"": ""FRI"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Visiting faculty: on campus Tue and Thu only""}]",[]
+F09,Dr. Ishita Banerjee,ECE,4,False,"[{""day"": ""WED"", ""periods"": [6, 7, 8, 9], ""reason"": ""HOD meeting""}]",[]
+F10,Dr. Suresh Pradhan,ECE,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON"", ""TUE"", ""WED"", ""THU"", ""FRI""], ""periods"": [6, 7, 8, 9], ""note"": ""Prefers mornings""}]"
+F11,Dr. Neha Kulkarni,ECE,4,False,[],[]
+F12,Dr. Amit Behera,ECE,4,False,[],[]
+F13,Dr. Ritu Sharma,ECE,4,False,[],[]
+F14,Dr. Kunal Joshi,EE,4,False,"[{""day"": ""WED"", ""periods"": [6, 7, 8, 9], ""reason"": ""HOD meeting""}]",[]
+F15,Dr. Sneha Mohanty,EE,4,False,[],[]
+F16,Dr. Rakesh Panda,EE,4,False,[],[]
+F17,Dr. Divya Menon,EE,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON"", ""TUE"", ""WED"", ""THU"", ""FRI""], ""periods"": [9], ""note"": ""Avoid the 5 PM slot""}]"
+F18,Dr. Manoj Tripathy,EE,4,False,[],[]
+F19,Dr. Shalini Gupta,MA,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON"", ""TUE"", ""WED"", ""THU"", ""FRI""], ""periods"": [9], ""note"": ""Avoid the 5 PM slot""}]"
+F20,Dr. Prakash Nayak,MA,4,False,[],[]
+F21,Dr. Lakshmi Reddy,PH,4,False,"[{""day"": ""FRI"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Research travel every Friday""}]",[]
+F22,Dr. Harish Dash,PH,4,False,[],[]
+F23,Dr. Farah Khan,PH,4,False,[],[]
+F24,Dr. Gaurav Jena,PH,4,False,[],[]
+F25,Dr. Tanvi Desai,ME,4,False,"[{""day"": ""WED"", ""periods"": [6, 7, 8, 9], ""reason"": ""HOD meeting""}]",[]
+F26,Dr. Abhishek Rout,ME,4,True,[],[]
+F27,Dr. Sunita Bose,ME,4,False,[],[]
+F28,Dr. Nikhil Swain,ME,4,False,[],[]
+F29,Dr. Priya Raman,ME,4,False,[],[]
+F30,Dr. Debashish Sethi,ME,4,False,[],[]
+F31,Dr. Anjali Verma,CE,4,False,"[{""day"": ""WED"", ""periods"": [6, 7, 8, 9], ""reason"": ""HOD meeting""}]",[]
+F32,Dr. Sameer Khuntia,CE,4,False,[],"[{""type"": ""avoid"", ""days"": [""MON""], ""periods"": [1], ""note"": ""No Monday 8 AM""}]"
+F33,Dr. Rekha Pillai,CE,4,False,[],[]
+F34,Dr. Varun Acharya,CE,4,False,[],[]
+F35,Dr. Bhavna Saxena,CE,4,False,[],[]
+F36,Dr. Ashok Mahapatra,HSS,4,False,"[{""day"": ""MON"", ""periods"": [1, 2, 3], ""reason"": ""Teaches at partner school Monday mornings""}]",[]
+F37,Prof. Shreya Kapoor (Dean),ADMIN,4,False,"[{""day"": ""TUE"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Board meetings Tue/Thu""}, {""day"": ""THU"", ""periods"": [1, 2, 3, 4, 5, 6, 7, 8, 9], ""reason"": ""Board meetings Tue/Thu""}, {""day"": ""MON"", ""periods"": [1, 2, 6, 7, 8, 9], ""reason"": ""Dean's office hours""}, {""day"": ""WED"", ""periods"": [1, 2, 6, 7, 8, 9], ""reason"": ""Dean's office hours""}, {""day"": ""FRI"", ""periods"": [1, 2, 6, 7, 8, 9], ""reason"": ""Dean's office hours""}]",[]
+F38,Dr. Imran Qureshi,HSS,4,False,[],[]
+F39,Dr. Radhika Hegde,HSS,4,False,[],[]
+F40,Dr. Om Prakash Sahu,HSS,4,False,[],[]

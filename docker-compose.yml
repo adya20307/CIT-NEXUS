@@ -1,0 +1,17 @@
+services:
+  keycloak:
+    image: ${KEYCLOAK_IMAGE:?Set KEYCLOAK_IMAGE to a pinned, supported Keycloak image}
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME:?Set a local Keycloak bootstrap administrator name}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD:?Set a local Keycloak bootstrap administrator password}
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./keycloak/realm-export:/opt/keycloak/data/import:ro
+      - ./keycloak/themes/cit-nexus:/opt/keycloak/themes/cit-nexus:ro
+      - ./frontend/public/images:/opt/keycloak/themes/cit-nexus/login/resources/img:ro
+      - keycloak-data:/opt/keycloak/data
+
+volumes:
+  keycloak-data:

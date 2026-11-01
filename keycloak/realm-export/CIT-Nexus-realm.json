@@ -1,0 +1,137 @@
+{
+  "realm": "cit-nexus",
+  "loginTheme": "cit-nexus",
+  "enabled": true,
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      {
+        "name": "ADMIN",
+        "description": "CIT Nexus administrator"
+      },
+      {
+        "name": "department_coordinator",
+        "description": "CIT Nexus department coordinator"
+      },
+      {
+        "name": "FACULTY",
+        "description": "CIT Nexus faculty member"
+      },
+      {
+        "name": "club_representative",
+        "description": "CIT Nexus club representative"
+      },
+      {
+        "name": "STUDENT",
+        "description": "CIT Nexus student"
+      }
+    ]
+  },
+  "clientScopes": [
+    {
+      "name": "cit-nexus-api",
+      "description": "CIT Nexus API audience and department claim",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "cit-nexus-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "cit-nexus-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "cit-department-groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "consentRequired": false,
+          "config": {
+            "claim.name": "cit_department_groups",
+            "full.path": "true",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "userinfo.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "cit-nexus-frontend",
+      "name": "CIT Nexus React application",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "redirectUris": [
+        "http://localhost:5173/*",
+        "http://127.0.0.1:5173/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*##http://127.0.0.1:5173/*"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "email",
+        "cit-nexus-api"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "departments"
+    },
+    {
+      "name": "cit-nexus-admins",
+      "realmRoles": [
+        "ADMIN"
+      ]
+    },
+    {
+      "name": "cit-nexus-department-coordinators",
+      "realmRoles": [
+        "department_coordinator"
+      ]
+    },
+    {
+      "name": "cit-nexus-faculty",
+      "realmRoles": [
+        "FACULTY"
+      ]
+    },
+    {
+      "name": "cit-nexus-club-representatives",
+      "realmRoles": [
+        "club_representative"
+      ]
+    },
+    {
+      "name": "cit-nexus-students",
+      "realmRoles": [
+        "STUDENT"
+      ]
+    }
+  ]
+}

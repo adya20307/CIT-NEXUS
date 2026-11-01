@@ -1,0 +1,688 @@
+.spectra-page {
+  width: 100%;
+  padding: 2px 0 34px;
+  color: var(--text);
+}
+
+.spectra-heading {
+  margin-top: 24px;
+}
+
+.spectra-heading h1 {
+  margin: 9px 0;
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+.spectra-heading p,
+.spectra-section-heading p {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.spectra-secondary,
+.spectra-primary,
+.spectra-danger {
+  min-height: 39px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.spectra-secondary {
+  color: var(--text);
+  background: #fff;
+}
+
+.spectra-secondary:hover:not(:disabled) {
+  border-color: #9fb3d1;
+  background: #f8faff;
+}
+
+.spectra-primary {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.spectra-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.spectra-danger {
+  color: #fff;
+  background: #b42318;
+  border-color: #b42318;
+}
+
+.spectra-secondary:disabled,
+.spectra-primary:disabled,
+.spectra-danger:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.spectra-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.spectra-stat {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 14px 16px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 3px 12px rgba(20, 40, 80, .035);
+}
+
+.spectra-stat span {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.spectra-stat strong {
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.spectra-stat.pending strong { color: #a45b00; }
+.spectra-stat.approved strong { color: #15803d; }
+.spectra-stat.rejected strong { color: #b42318; }
+.spectra-stat.cancelled strong { color: #667085; }
+
+.spectra-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, .92fr) minmax(380px, 1.08fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.spectra-page .panel {
+  text-align: left;
+}
+
+.spectra-form-panel,
+.spectra-events-panel,
+.spectra-detail-panel {
+  padding: 19px;
+}
+
+.spectra-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-bottom: 17px;
+}
+
+.spectra-section-heading h2 {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.spectra-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--primary-dark);
+  background: #edf3ff;
+  border-radius: 9px;
+}
+
+.spectra-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px 12px;
+}
+
+.spectra-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.spectra-field.full,
+.spectra-form-actions.full,
+.spectra-preview.full {
+  grid-column: 1 / -1;
+}
+
+.spectra-field input,
+.spectra-field select,
+.spectra-field textarea,
+.spectra-list-controls select,
+.spectra-search input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #d5deeb;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--text);
+  padding: 10px 11px;
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.spectra-field input:focus,
+.spectra-field select:focus,
+.spectra-field textarea:focus,
+.spectra-list-controls select:focus,
+.spectra-search input:focus {
+  border-color: #6b91e8;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .11);
+}
+
+.spectra-field input:disabled,
+.spectra-field select:disabled {
+  background: #f4f6f9;
+}
+
+.spectra-field small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.spectra-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 4px;
+}
+
+.spectra-preview {
+  border: 1px solid;
+  border-radius: 9px;
+  padding: 12px;
+  font-size: 11px;
+}
+
+.spectra-preview.available {
+  border-color: #a7e4bf;
+  background: #f0fbf4;
+  color: #166534;
+}
+
+.spectra-preview.conflict {
+  border-color: #f4cc8d;
+  background: #fff9eb;
+  color: #854d0e;
+}
+
+.spectra-preview-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.spectra-preview-title span {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.spectra-conflict-list {
+  margin: 10px 0 0;
+  padding-left: 19px;
+  display: grid;
+  gap: 5px;
+  line-height: 1.45;
+}
+
+.spectra-pending-note {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.spectra-suggestions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(133, 77, 14, .2);
+}
+
+.spectra-suggestions > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.spectra-suggestions button {
+  border: 1px solid #d9b772;
+  border-radius: 6px;
+  background: #fff;
+  color: #70430a;
+  padding: 6px 9px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spectra-inline-warning {
+  border-radius: 7px;
+  border: 1px solid #f4cc8d;
+  background: #fff9eb;
+  color: #854d0e;
+  padding: 9px 11px;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 8px 0 12px;
+}
+
+.spectra-list-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.spectra-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+}
+
+.spectra-search > svg {
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+
+.spectra-search input {
+  padding-left: 32px;
+}
+
+.spectra-event-list {
+  display: grid;
+  gap: 8px;
+  max-height: 640px;
+  overflow: auto;
+  padding: 1px 3px 2px 1px;
+}
+
+.spectra-event-card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #fff;
+  padding: 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.spectra-event-card.selected {
+  border-color: #86a8ef;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, .08);
+}
+
+.spectra-event-select {
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.spectra-event-select > strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+.spectra-event-select > span:not(.spectra-status) {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.spectra-event-select small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.spectra-status {
+  width: fit-content;
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.spectra-status.pending { color: #8a4b00; background: #fff2d6; }
+.spectra-status.approved { color: #17653a; background: #dff5e7; }
+.spectra-status.rejected { color: #a32218; background: #fde7e5; }
+.spectra-status.cancelled { color: #475467; background: #edf0f4; }
+
+.spectra-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.spectra-card-actions button,
+.spectra-event-card > .spectra-reject {
+  min-width: 59px;
+  border: 1px solid;
+  border-radius: 6px;
+  background: #fff;
+  padding: 5px 7px;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spectra-approve { color: #17653a; border-color: #a7d8b7 !important; }
+.spectra-reject { color: #a32218; border-color: #efb4ae !important; }
+
+.spectra-empty,
+.spectra-state {
+  min-height: 145px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+.spectra-empty strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.spectra-state {
+  flex-direction: row;
+}
+
+.spectra-detail-panel {
+  margin-top: 16px;
+}
+
+.spectra-detail-panel .spectra-section-heading {
+  align-items: center;
+}
+
+.spectra-close-detail,
+.spectra-modal-close {
+  margin-left: auto;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--text-secondary);
+  padding: 6px;
+  cursor: pointer;
+}
+
+.spectra-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.spectra-detail-grid > div {
+  min-width: 0;
+  border-radius: 8px;
+  background: #f7f9fc;
+  padding: 10px;
+}
+
+.spectra-detail-grid dt {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.spectra-detail-grid dd {
+  margin: 5px 0 0;
+  color: var(--text);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.spectra-history {
+  margin-top: 18px;
+}
+
+.spectra-history h3 {
+  margin-bottom: 9px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.spectra-history-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-top: 1px solid #edf0f4;
+  padding: 10px 0;
+}
+
+.spectra-history-entry > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.spectra-history-entry strong {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.spectra-history-entry small,
+.spectra-muted {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.spectra-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 11px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.spectra-alert.error {
+  color: #9f231a;
+  border-color: #f1c0bb;
+  background: #fff3f1;
+}
+
+.spectra-alert.success {
+  color: #17653a;
+  border-color: #b8e3c5;
+  background: #f0fbf4;
+}
+
+.spectra-alert button {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.spectra-access-state {
+  margin-top: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: var(--primary-dark);
+  text-align: left;
+}
+
+.spectra-access-state h1 {
+  color: var(--text);
+  margin-bottom: 8px;
+  font-size: 23px;
+}
+
+.spectra-access-state p {
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.spectra-error-text {
+  color: #a32218 !important;
+}
+
+.spectra-modal-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  padding: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 42, .48);
+}
+
+.spectra-modal {
+  position: relative;
+  width: min(460px, 100%);
+  text-align: left;
+}
+
+.spectra-modal h2 {
+  padding-right: 35px;
+  color: var(--text);
+  font-size: 19px;
+}
+
+.spectra-modal > p {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 8px 0 13px;
+}
+
+.spectra-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.spectra-modal form {
+  display: grid;
+  gap: 13px;
+}
+
+.spectra-spin {
+  animation: spectra-spin .9s linear infinite;
+}
+
+@keyframes spectra-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 960px) {
+  .spectra-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .spectra-page .welcome {
+    align-items: flex-start;
+    margin: 18px 0;
+  }
+
+  .spectra-heading .spectra-secondary {
+    padding: 8px;
+    font-size: 0;
+  }
+
+  .spectra-heading .spectra-secondary svg {
+    flex-shrink: 0;
+  }
+
+  .spectra-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .spectra-stat {
+    padding: 12px;
+  }
+
+  .spectra-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .spectra-field.full,
+  .spectra-form-actions.full,
+  .spectra-preview.full {
+    grid-column: auto;
+  }
+
+  .spectra-form-actions {
+    justify-content: stretch;
+  }
+
+  .spectra-form-actions button {
+    flex: 1;
+  }
+
+  .spectra-list-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .spectra-event-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .spectra-card-actions {
+    flex-direction: row;
+  }
+
+  .spectra-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

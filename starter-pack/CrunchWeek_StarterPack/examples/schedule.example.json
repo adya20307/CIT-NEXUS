@@ -1,0 +1,84 @@
+{
+  "team": "Example team (this is NOT a valid solution, it only shows the shape)",
+  "dataset_id": "cit-public-v1",
+  "sessions": [
+    {
+      "session_id": "MA101-AB-L1",
+      "day": "MON",
+      "start_period": 2,
+      "room_id": "LH-1"
+    },
+    {
+      "session_id": "PH191-A-P1",
+      "day": "TUE",
+      "start_period": 6,
+      "room_id": "PHY-LAB"
+    },
+    {
+      "session_id": "OE301-L1",
+      "day": "WED",
+      "start_period": 3,
+      "room_id": "LH-3"
+    },
+    {
+      "session_id": "OE302-L1",
+      "day": "WED",
+      "start_period": 3,
+      "room_id": "LH-5"
+    },
+    {
+      "session_id": "OE303-L1",
+      "day": "WED",
+      "start_period": 3,
+      "room_id": "CR-101"
+    }
+  ],
+  "fest_week": {
+    "bookings": [
+      {
+        "request_id": "BR-01",
+        "status": "approved",
+        "day": "MON",
+        "start_period": 4,
+        "end_period": 5,
+        "room_id": "AUD",
+        "reason": "Institute event, auditorium free"
+      },
+      {
+        "request_id": "BR-09",
+        "status": "rejected",
+        "reason": "No venue on campus seats 1,200 (largest is the OAT at 800)"
+      },
+      {
+        "request_id": "BR-07",
+        "status": "alternative_offered",
+        "day": "THU",
+        "start_period": 10,
+        "end_period": 12,
+        "room_id": "AUD",
+        "reason": "SH-1 went to the Quiz Club, who asked first; the auditorium has a stage and is free"
+      }
+    ],
+    "session_overrides": [
+      {
+        "session_id": "ID101-ALL-L1",
+        "day": "WED",
+        "start_period": 4,
+        "room_id": "AUD",
+        "displaced_by": "BR-01"
+      }
+    ]
+  },
+  "exams": [
+    {
+      "exam_id": "EX-MA101",
+      "day": "MON",
+      "session": "AM",
+      "rooms": [
+        "AUD",
+        "LH-1",
+        "LH-2"
+      ]
+    }
+  ]
+}
